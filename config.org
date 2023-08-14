@@ -9,6 +9,7 @@
   - [[#elpaca-package-manager][Elpaca Package Manager]]
   - [[#general-keybindings][General Keybindings]]
 - [[#all-the-icons][ALL THE ICONS]]
+- [[#backup-files][BACKUP FILES]]
 - [[#fonts][FONTS]]
   - [[#setting-the-font-face][Setting the font face]]
 - [[#graphical-user-interface-tweaks][GRAPHICAL USER INTERFACE TWEAKS]]
@@ -16,20 +17,31 @@
   - [[#display-line-numbers-and-truncated-lines][Display Line Numbers and Truncated Lines]]
 - [[#reload-emacs][RELOAD EMACS]]
 - [[#magit][MAGIT]]
+- [[#mu4e][MU4E]]
+- [[#matlab][MATLAB]]
+- [[#olivetti-mode][OLIVETTI MODE]]
 - [[#org-mode][ORG MODE]]
+  - [[#org-agenda][Org agenda]]
   - [[#enabling-table-of-contents][Enabling Table of Contents]]
   - [[#enabling-org-bullets][Enabling Org Bullets]]
   - [[#disabling-electric-indent][Disabling Electric Indent]]
+  - [[#disabling-line-numbers][Disabling line numbers]]
+  - [[#enabling-olivetti-mode][Enabling olivetti mode]]
   - [[#auto-tangling-source-code-blocks][Auto-tangling source code blocks]]
   - [[#source-code-block-tag-espansion][Source Code block tag espansion]]
+  - [[#exporting-to-other-formats][Exporting to other formats]]
 - [[#projectile][PROJECTILE]]
-- [[#sly][SLY]]
+- [[#rainbow-mode][RAINBOW MODE]]
 - [[#shells-and-terminals][SHELLS AND TERMINALS]]
   - [[#eshell][Eshell]]
   - [[#vterm][Vterm]]
   - [[#vterm-toggle][Vterm toggle]]
+- [[#stumpwm-configuration-and-tweaking][STUMPWM CONFIGURATION AND TWEAKING]]
+  - [[#stumpwm-mode][StumpWM mode]]
+  - [[#sly][SLY]]
 - [[#theming][THEMING]]
 - [[#which-key][WHICH-KEY]]
+- [[#yasnippet][YASNIPPET]]
 
 * IMPORTANT PROGRAMS TO LOAD FIRST
 ** Elpaca Package Manager
@@ -97,6 +109,18 @@
   :hook (dired-mode . (lambda () (all-the-icons-dired-mode t))))
 #+end_src
 
+* BACKUP FILES
+Move backup files to a better place.
+#+begin_src emacs-lisp
+  (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+        backup-by-copying t    ; Don't delink hardlinks
+        version-control t      ; Use version numbers on backups
+        delete-old-versions t  ; Automatically delete excess backups
+        kept-new-versions 20   ; how many of the newest versions to keep
+        kept-old-versions 5    ; and how many of the old
+        )
+#+end_src
+
 * FONTS
 ** Setting the font face
 #+begin_src emacs-lisp
@@ -156,7 +180,30 @@ L'interfaccia di Git per Emacs.
 #+begin_src emacs-lisp
   (use-package magit)
 #+end_src
+* MU4E
+#+begin_src emacs-lisp :tangle no
+  (require 'mu4e)
+#+end_src
+
+* MATLAB
+Importo matlab-mode per lavorare con =file.m=
+#+begin_src emacs-lisp
+  (use-package matlab-mode)
+#+end_src
+
+* OLIVETTI MODE
+A package to make writing less cluttered and centered on the screen.
+#+begin_src emacs-lisp
+  (use-package olivetti)
+#+end_src
 * ORG MODE
+** Org agenda
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-c l") #'org-store-link)
+  (global-set-key (kbd "C-c a") #'org-agenda)
+  (global-set-key (kbd "C-c c") #'org-capture)
+#+end_src
+
 ** Enabling Table of Contents
 #+begin_src emacs-lisp
   (use-package toc-org
@@ -176,6 +223,15 @@ L'interfaccia di Git per Emacs.
   (electric-indent-mode -1)
 #+end_src
 
+** Disabling line numbers
+#+begin_src emacs-lisp
+  (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
+#+end_src
+
+** Enabling olivetti mode
+#+begin_src emacs-lisp
+  (add-hook 'org-mode-hook (lambda () (olivetti-mode 1)))
+#+end_src
 ** Auto-tangling source code blocks
 #+begin_src emacs-lisp
   (use-package org-auto-tangle
@@ -187,6 +243,16 @@ L'interfaccia di Git per Emacs.
 #+begin_src emacs-lisp
   (require 'org-tempo)
 #+end_src
+
+** Exporting to other formats
+#+begin_src emacs-lisp
+  (use-package ox-reveal
+    :config
+    (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
+  (use-package htmlize)
+
+#+end_src
+
 * PROJECTILE
 Managing project on a computer is essential.
 #+begin_src emacs-lisp
@@ -198,10 +264,9 @@ Managing project on a computer is essential.
 		("C-c p" . projectile-command-map)))
 #+end_src
 
-* SLY
+* RAINBOW MODE
 #+begin_src emacs-lisp
-  (use-package sly)
-  (setq inferior-lisp-program "/opt/sbcl/bin/sbcl")
+  (use-package rainbow-mode)
 #+end_src
 
 * SHELLS AND TERMINALS
@@ -256,10 +321,24 @@ Managing project on a computer is essential.
                   (window-height . 0.3))))
 #+end_src
 
+* STUMPWM CONFIGURATION AND TWEAKING
+** StumpWM mode
+#+begin_src emacs-lisp
+  (use-package stumpwm-mode
+    :config
+    (setq stumpwm-shell-program "/home/luca/.stumpwm.d/modules/util/stumpish/stumpish"))
+#+end_src
+** SLY
+#+begin_src emacs-lisp
+  (use-package sly)
+  (setq inferior-lisp-program "/opt/sbcl/bin/sbcl")
+#+end_src
+
 * THEMING
 #+begin_src emacs-lisp
-  (use-package modus-themes)
-  (load-theme 'modus-vivendi :no-confirm)
+  (use-package modus-themes
+    :init
+    (load-theme 'modus-vivendi-tinted :no-confirm))
 #+end_src
 
 * WHICH-KEY
@@ -280,5 +359,14 @@ Managing project on a computer is essential.
 	  which-key-max-description-length 25
 	  which-key-allow-imprecise-window-fit t
 	  which-key-separator " → " ))
+#+end_src
+
+* YASNIPPET
+#+begin_src emacs-lisp
+  (use-package yasnippet
+    :config
+    (yas-global-mode))
+  (use-package yasnippet-snippets)
+  (use-package yasnippet-classic-snippets)
 #+end_src
 
