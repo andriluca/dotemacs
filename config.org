@@ -212,12 +212,19 @@ L'interfaccia di Git per Emacs.
 Importo matlab-mode per lavorare con =file.m=
 #+begin_src emacs-lisp
   (use-package matlab-mode)
+  (autoload 'matlab-mode "matlab" "Matlab Editing Mode" t)
+  (add-to-list
+   'auto-mode-alist
+   '("\\.m$" . matlab-mode))
+  (setq matlab-indent-function t)
+  (setq matlab-shell-command "matlab")
 #+end_src
 
 * OLIVETTI MODE
 A package to make writing less cluttered and centered on the screen.
 #+begin_src emacs-lisp
-  (use-package olivetti)
+  (use-package olivetti
+    :config (setq-default olivetti-body-width 0.6))
 #+end_src
 * ORG MODE
 ** Org agenda
