@@ -31,6 +31,7 @@
   - [[#auto-tangling-source-code-blocks][Auto-tangling source code blocks]]
   - [[#source-code-block-tag-espansion][Source Code block tag espansion]]
   - [[#exporting-to-other-formats][Exporting to other formats]]
+- [[#paredit][PAREDIT]]
 - [[#projectile][PROJECTILE]]
 - [[#rainbow-mode][RAINBOW MODE]]
 - [[#shells-and-terminals][SHELLS AND TERMINALS]]
@@ -273,6 +274,11 @@ A package to make writing less cluttered and centered on the screen.
     (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
   (use-package htmlize)
 
+#+end_src
+
+* PAREDIT
+#+begin_src emacs-lisp
+  (use-package paredit)
 #+end_src
 
 * PROJECTILE
