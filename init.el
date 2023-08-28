@@ -7,7 +7,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("4320a92406c5015e8cba1e581a88f058765f7400cf5d885a3aa9b7b9fc448fa7" default))
+   '("6c655326d9bb38d4be02d364d344bfa61b3c8fdabd1cf4b97dddc8c0b3047b47" "4320a92406c5015e8cba1e581a88f058765f7400cf5d885a3aa9b7b9fc448fa7" default))
  '(excorporate-configuration
    '(("resource-url" . "https://outlook.office365.com/EWS/Exchange.asmx")
      ("resource-url-prefixes" "https://outlook.office365.com/EWS/")
@@ -21,7 +21,8 @@
       ("login_hint" . "10459940@polimi.it")
       ("prompt" . "login")
       ("redirect_uri" . "https://login.microsoftonline.com/common/oauth2/nativeclient"))))
- '(org-agenda-files '("/home/luca/Documents/Org/last-exam.org"))
+ '(org-agenda-files
+   '("/home/luca/Documents/Org/laurea.org" "/home/luca/Documents/Org/last-exam.org"))
  '(package-selected-packages '(yaml-mode sly))
  '(warning-suppress-types '((use-package))))
 (custom-set-faces
