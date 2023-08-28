@@ -12,6 +12,7 @@
 - [[#backup-files][BACKUP FILES]]
 - [[#fonts][FONTS]]
   - [[#setting-the-font-face][Setting the font face]]
+- [[#version-control][VERSION CONTROL]]
 - [[#graphical-user-interface-tweaks][GRAPHICAL USER INTERFACE TWEAKS]]
   - [[#disable-menubar-toolbar-scrollbar][Disable Menubar, toolbar, scrollbar]]
   - [[#display-line-numbers-and-truncated-lines][Display Line Numbers and Truncated Lines]]
@@ -151,6 +152,27 @@ Move backup files to a better place.
 
 ;; Uncomment the following line if line spacing needs adjusting.
 (setq-default line-spacing 0.12)
+#+end_src
+* VERSION CONTROL
+#+begin_src emacs-lisp
+  (use-package git-gutter
+    :config (global-git-gutter-mode +1))
+
+  (global-set-key (kbd "C-x C-g") 'git-gutter)
+  (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
+
+  ;; Jump to next/previous hunk
+  (global-set-key (kbd "C-x p") 'git-gutter:previous-hunk)
+  (global-set-key (kbd "C-x n") 'git-gutter:next-hunk)
+
+  ;; Stage current hunk
+  (global-set-key (kbd "C-x v s") 'git-gutter:stage-hunk)
+
+  ;; Revert current hunk
+  (global-set-key (kbd "C-x v r") 'git-gutter:revert-hunk)
+
+  ;; Mark current hunk
+  (global-set-key (kbd "C-x v SPC") #'git-gutter:mark-hunk)
 #+end_src
 * GRAPHICAL USER INTERFACE TWEAKS
 ** Disable Menubar, toolbar, scrollbar
