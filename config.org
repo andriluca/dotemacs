@@ -374,6 +374,10 @@ Managing project on a computer is essential.
   (use-package modus-themes
     :init
     (load-theme 'modus-vivendi-tinted :no-confirm))
+
+  (use-package ef-themes
+    :init
+    (load-theme 'ef-duo-dark :no-confirm))
 #+end_src
 
 * WHICH-KEY

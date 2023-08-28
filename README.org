@@ -1,0 +1,4 @@
+#+title: Configurazione personale di Emacs
+#+author: Luca Andriotto
+
+Questa repository raccoglie i dotfiles relativi al text editor =GNU Emacs=.
