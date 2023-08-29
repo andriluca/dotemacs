@@ -11,6 +11,7 @@
 - [[#all-the-icons][ALL THE ICONS]]
 - [[#backup-files][BACKUP FILES]]
 - [[#fonts][FONTS]]
+  - [[#default-font-size][Default font size]]
   - [[#setting-the-font-face][Setting the font face]]
 - [[#version-control][VERSION CONTROL]]
 - [[#graphical-user-interface-tweaks][GRAPHICAL USER INTERFACE TWEAKS]]
@@ -124,6 +125,11 @@ Move backup files to a better place.
 #+end_src
 
 * FONTS
+** Default font size
+Making default fonts more readable.
+#+begin_src emacs-lisp
+  (set-frame-font "Hack 15" nil t)
+#+end_src
 ** Setting the font face
 #+begin_src emacs-lisp
 (set-face-attribute 'default nil
