@@ -19,6 +19,7 @@
   - [[#display-line-numbers-and-truncated-lines][Display Line Numbers and Truncated Lines]]
 - [[#reload-emacs][RELOAD EMACS]]
 - [[#magit][MAGIT]]
+- [[#modeline][MODELINE]]
 - [[#mu4e][MU4E]]
 - [[#matlab][MATLAB]]
 - [[#olivetti-mode][OLIVETTI MODE]]
@@ -209,6 +210,14 @@ L'interfaccia di Git per Emacs.
 #+begin_src emacs-lisp
   (use-package magit)
 #+end_src
+* MODELINE
+Creo la mia modeline personale, con meno distrazioni e più leggibilità.
+Informazioni da mantenere:
+- Nome del Buffer che sto modificando
+- Indicatore di modifica del Buffer
+- Indicatore di "scrivibilità" del Buffer
+- Data e ora
+
 * MU4E
 #+begin_src emacs-lisp :tangle no
   (require 'mu4e)
